@@ -25,6 +25,7 @@
 
 <form action="GetProducts">
     <input type="submit" value="View Products"/>
+    <input type="hidden" id="st" name="st" value="0">
 </form>
 
 

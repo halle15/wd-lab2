@@ -24,10 +24,12 @@
         <input type="hidden" id="delete" name="delete" value="1" />
      	<input type="hidden" id="code" name="code" value="${product.code}" />
      	<input type="hidden" id="description" name="description" value="${product.description}" />
+     	<input type="hidden" id="st" name="st" value=0>
      	<input type="hidden" id="price" name="price" value="${product.price}" />
     </form>
     <form action="GetProducts" method="get">
         <input type="submit" value="No" />
+        <input type="hidden" id="st" name="st" value=0>
     </form>
 </body>
 </html>

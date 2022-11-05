@@ -30,19 +30,27 @@
         <th style="width:75px">${i.value.code}</th>
         <th style="width:500px">${i.value.description}</th>
         <th style="width:75px;text-align:right">${i.value.getPriceCurrencyFormat()}</th>
-        <th><input type="submit" value="Add To Cart"></th>
+        <th>
+        	<form action="getCart" method="post">
+        		<input type="submit" value="Add To Cart">
+        		<input type="hidden" value="a" id="mode" name="mode">
+        		<input type="hidden" value="${i.value.code}" id="code" name="code">
+        		<input type="hidden" value="${i.value.description}" id="description" name="description">
+        		<input type="hidden" value="${i.value.price}" id="price" name="price">
+        	</form>
+        </th>
     </tr>
     </c:forEach>
     <tr>
       <td colspan="2"></td>
       <td>
-      <form>
+      <form action="getCart" method="get">
            <input type="submit" value="View Cart"></input> <!-- I moved this and the back button around, looked nicer, needed back button in testing and works better anyways-->
       </form>
 	</td>
        <td>
          <form action="/msl">
-			<input type="submit" value="Back" />
+			<input type="submit" value="Back"/>
 		</form>
       </td>
     </tr>

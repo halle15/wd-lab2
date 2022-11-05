@@ -10,6 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import music.models.CartEntry;
 import music.models.Product;
 
 /**
@@ -51,15 +53,21 @@ public class GetProducts extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 		
 		request.setAttribute("entry", p);
 
 		String xx = request.getParameter("st"); //determines which page this hashmap is deployed to
 		if(xx.equals("1")) {
+			HttpSession s = request.getSession();
+			if(s.getAttribute("entries") == null) {
+				HashMap<String, CartEntry> l = new HashMap<String, CartEntry>();
+				s.setAttribute("entries", l);
+			}
 			request.getRequestDispatcher("searchResults.jsp").include(request, response);
 		}
 		else {
+			
 			request.getRequestDispatcher("productMaint.jsp").include(request, response);
 		}
 		
@@ -71,6 +79,8 @@ public class GetProducts extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		
 		String code;
 		if(request.getParameter("code") != null) {
